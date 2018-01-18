@@ -1,0 +1,61 @@
+---
+version: 2
+
+aliases:
+  - &composer
+      name: Installing composer dependencies
+      command: composer install
+
+  - &php_steps
+      - checkout
+      - run: *composer
+      - run:
+          name: Running unit tests
+          command: php tests/test-runner.php unit
+
+  - &tesseract_job
+      docker:
+        - image: circleci/php:7.2-cli
+      steps:
+        - checkout
+        - setup_remote_docker
+        - run: *composer
+        - run:
+            name: Running all tests
+            command: php tests/test-runner.php unit functional
+        - run:
+            name: Submitting code coverage report to Codacy
+            command: php vendor/bin/codacycoverage clover coverage.xml
+
+jobs:
+  php_5.6: { docker: [ { image: "circleci/php:5.6-cli" } ], steps: *php_steps }
+  php_7.0: { docker: [ { image: "circleci/php:7.0-cli" } ], steps: *php_steps }
+  php_7.1: { docker: [ { image: "circleci/php:7.1-cli" } ], steps: *php_steps }
+  php_7.2: { docker: [ { image: "circleci/php:7.2-cli" } ], steps: *php_steps }
+
+  tesseract_3.03:
+    environment:
+      - TESSERACT_VERSION: "3.03"
+    <<: *tesseract_job
+
+  tesseract_3.04:
+    environment:
+      - TESSERACT_VERSION: "3.04"
+    <<: *tesseract_job
+
+  tesseract_3.05:
+    environment:
+      - TESSERACT_VERSION: "3.05"
+    <<: *tesseract_job
+
+workflows:
+  version: 2
+  php_versions:
+    jobs:
+      - php_5.6
+      - php_7.0
+      - php_7.1
+      - php_7.2
+      - tesseract_3.03
+      - tesseract_3.04
+      - tesseract_3.05

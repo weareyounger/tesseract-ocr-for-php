@@ -4,7 +4,7 @@
 
 A wrapper to work with Tesseract OCR inside PHP.
 
-[![Build Status][travisci_badge]][travisci]
+[![Build Status][circleci_badge]][circleci]
 [![Build Status][appveyor_badge]][appveyor]
 [![Codacy Badge][codacy_badge]][codacy]
 [![Test Coverage][test_coverage_badge]][test_coverage]
@@ -280,8 +280,8 @@ tesseract-ocr-for-php is released under the [MIT License][].
 
 <h2></h2><p align="center"><sub>Made with <sub><a href="#"><img src="https://thiagoalessio.ams3.digitaloceanspaces.com/heart.svg" alt="love" width="14px"/></a></sub> in Berlin</sub></p>
 
-[travisci_badge]: https://travis-ci.org/thiagoalessio/tesseract-ocr-for-php.svg?branch=master
-[travisci]: https://travis-ci.org/thiagoalessio/tesseract-ocr-for-php
+[circleci_badge]: https://circleci.com/gh/thiagoalessio/tesseract-ocr-for-php/tree/master.svg?style=shield
+[circleci]: https://circleci.com/gh/thiagoalessio/tesseract-ocr-for-php/tree/master
 [appveyor_badge]: https://ci.appveyor.com/api/projects/status/xwy5ls0798iwcim3/branch/master?svg=true
 [appveyor]: https://ci.appveyor.com/project/thiagoalessio/tesseract-ocr-for-php/branch/master
 [codacy_badge]: https://api.codacy.com/project/badge/Grade/024c8814aecf40329500df267134c623
